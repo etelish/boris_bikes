@@ -2,6 +2,9 @@ class DockingStation
   class DockingStationEmpty < Exception
   end
 
+  class DockingStationFull < Exception
+  end
+
   attr_reader :bike
 
   def release_bike
@@ -10,6 +13,7 @@ class DockingStation
   end
 
   def dock(bike)
+    raise DockingStationFull if !@bike.nil?
     @bike = bike
   end
 end
