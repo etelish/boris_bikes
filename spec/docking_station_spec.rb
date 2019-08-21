@@ -22,16 +22,16 @@ describe DockingStation do
   end
 
   describe '#dock' do
-    
+
     it_responds_to(:dock)
 
     it 'accepts a bike when docking' do
       subject.dock(bike)
-      expect(subject.bike).to eq bike
+      expect(subject.release_bike).to eq bike
     end
 
     it 'raises exception if dock is full' do
-      subject.dock(bike)
+      20.times { subject.dock(bike) }
       expect { subject.dock(bike) }.to raise_error DockingStation::DockingStationFull
     end
   end

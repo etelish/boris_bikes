@@ -1,19 +1,23 @@
 class DockingStation
-  class DockingStationEmpty < Exception
-  end
-
   class DockingStationFull < Exception
   end
 
-  attr_reader :bike
+  class DockingStationEmpty < Exception
+  end
+
+  attr_reader :bikes
+
+  def initialize
+    @bikes = []
+  end
 
   def release_bike
-    raise DockingStationEmpty if @bike.nil?
-    @bike
+    raise DockingStationEmpty if @bikes.empty?
+    @bikes.pop
   end
 
   def dock(bike)
-    raise DockingStationFull if !@bike.nil?
-    @bike = bike
+    raise DockingStationFull if @bikes.count == 20
+    @bikes << bike
   end
 end
